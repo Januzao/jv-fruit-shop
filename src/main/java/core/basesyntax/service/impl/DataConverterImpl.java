@@ -1,7 +1,7 @@
-package core.basesyntax.dao.impl;
+package core.basesyntax.service.impl;
 
-import core.basesyntax.dao.DataConverter;
 import core.basesyntax.model.FruitTransaction;
+import core.basesyntax.service.DataConverter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +26,9 @@ public class DataConverterImpl implements DataConverter {
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException("Invalid quantity format: "
                         + data[2]);
+            }
+            if (quantity < 0) {
+                throw new IllegalArgumentException("Quantity cannot be negative: " + quantity);
             }
             fruitTransactions.add(new FruitTransaction(operation, fruit, quantity));
         }
